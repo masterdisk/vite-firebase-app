@@ -1,8 +1,12 @@
 <script lang="ts" setup>
 import { Ref, ref } from "vue"
+import { useFetch } from "../plugins/fetch.ts"
+
+//fetching data
+const { data } = useFetch("http://localhost:3000")
 
 // state
-const firstName: Ref<string> = ref("Anonymous")
+const firstName: Ref<null> = ref(data)
 const age: Ref<number> = ref(0)
 
 // methods
@@ -20,7 +24,7 @@ const changeTheName = (name: string): void => {
             <button class="text-2xl font-bold border-2 border-black red p-3 flex rounded-full" @click="age--">-</button>
             <button class="text-2xl font-bold border-2 border-black red p-3 flex rounded-full" @click="age++">+</button>
         </div>
-        <button @click="changeTheName('something :D')">Change the name to something</button>
+        <button @click="changeTheName('something')">Change the name to something</button>
     </div>
 </template>
 
